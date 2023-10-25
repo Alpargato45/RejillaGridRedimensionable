@@ -1,0 +1,39 @@
+﻿<Window x:Class="RejillaGridRedimensionable.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RejillaGridRedimensionable"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="900">
+
+    <Grid>
+
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="222" Margin="378,59,0,0" VerticalAlignment="Top" Width="412" 
+          AutoGenerateColumns="False" ItemsSource="{Binding TuColeccionDeDatos}" ColumnWidth="*" SelectionChanged="dataGrid_SelectionChanged" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
+                <DataGridTextColumn Header="Apellidos" Binding="{Binding Apellidos}" />
+                <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" />
+                <DataGridTextColumn Header="Edad" Binding="{Binding Edad}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <GroupBox x:Name="groupBoxNombre" HorizontalAlignment="Left" Height="49" Header="Nombre" Margin="100,63,0,0" VerticalAlignment="Top" Width="167">
+            <TextBox x:Name="textBoxNombre" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
+        </GroupBox>
+        <GroupBox x:Name="groupBoxApellidos" HorizontalAlignment="Left" Height="50" Header="Apellidos" Margin="100,130,0,0" VerticalAlignment="Top" Width="167">
+            <TextBox x:Name="textBoxApellidos" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
+        </GroupBox>
+        <GroupBox x:Name="groupBoxDireccion" HorizontalAlignment="Left" Height="50" Header="Dirección" Margin="100,203,0,0" VerticalAlignment="Top" Width="167">
+            <TextBox x:Name="textBoxDireccion" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
+        </GroupBox>
+        <GroupBox x:Name="groupBoxEdad" HorizontalAlignment="Left" Height="50" Header="Edad" Margin="100,267,0,0" VerticalAlignment="Top" Width="167">
+            <TextBox x:Name="textBoxEdad" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
+        </GroupBox>
+        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Height="32" Margin="100,340,0,0" VerticalAlignment="Top" Width="167" Click="btnAceptar_Click"/>
+        <Label x:Name="textoError" Content="" HorizontalAlignment="Left" Height="88" Margin="378,340,0,0" VerticalAlignment="Top" Width="339"/>
+        <Button x:Name="btnReset" Content="Resetear" HorizontalAlignment="Left" Height="32" Margin="100,385,0,0" VerticalAlignment="Top" Width="167" Click="btnReset_Click"/>
+        <Button Content="BORRAR" HorizontalAlignment="Left" Height="25" Margin="378,292,0,0" VerticalAlignment="Top" Width="412" Click="Button_Click"/>
+    </Grid>
+</Window>

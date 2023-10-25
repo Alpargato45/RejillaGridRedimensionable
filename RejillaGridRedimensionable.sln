@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RejillaGridRedimensionable", "RejillaGridRedimensionable.csproj", "{BA1B53FB-C76A-4C79-9190-CF38A34546FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA1B53FB-C76A-4C79-9190-CF38A34546FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1B53FB-C76A-4C79-9190-CF38A34546FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1B53FB-C76A-4C79-9190-CF38A34546FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1B53FB-C76A-4C79-9190-CF38A34546FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4AF74AE1-09BE-4BBA-B6D2-2799675717B6}
+	EndGlobalSection
+EndGlobal
