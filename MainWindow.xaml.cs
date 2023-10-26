@@ -162,14 +162,18 @@ namespace RejillaGridRedimensionable
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
-                var personaSeleccionada = dataGrid.SelectedItem as Persona;
-                if (personaSeleccionada != null)
+            var personaSeleccionada = dataGrid.SelectedItem as Persona;
+            if (personaSeleccionada != null)
+            {
+                MessageBoxResult result = MessageBox.Show("¿De verdad quieres borrar esta fila?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
                 {
-                listaPersonas.Remove(personaSeleccionada);
+                    listaPersonas.Remove(personaSeleccionada);
                     resetear();
                 }
             }
+        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
