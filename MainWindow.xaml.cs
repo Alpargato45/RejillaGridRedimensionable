@@ -182,5 +182,7 @@ namespace RejillaGridRedimensionable
         {
             resetear();
         }
+
+        
     }
 }
