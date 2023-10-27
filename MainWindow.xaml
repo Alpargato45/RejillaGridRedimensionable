@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="900">
 
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.MyCommand}" 
+                 Executed="MyCommandExecuted"/>
+    </Window.CommandBindings>
+
     <Grid>
 
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="222" Margin="378,59,0,0" VerticalAlignment="Top" Width="412" 

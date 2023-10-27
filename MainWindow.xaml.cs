@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,11 +51,14 @@ namespace RejillaGridRedimensionable
             textBoxEdad.Text = string.Empty;
         }
 
+        public static RoutedCommand MyCommand = new RoutedCommand();
+
         private ObservableCollection<Persona> listaPersonas = new ObservableCollection<Persona>();
         public MainWindow()
         {
             InitializeComponent();
             dataGrid.ItemsSource = listaPersonas;
+            MyCommand.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Alt));
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -174,14 +178,9 @@ namespace RejillaGridRedimensionable
                 }
             }
         }
-
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            if (Keyboard.Modifiers == ModifierKeys.Alt && e.Key == Key.B)
-            {
-                resetear();
-                e.Handled = true;
-            }
+            resetear();
         }
     }
 }
