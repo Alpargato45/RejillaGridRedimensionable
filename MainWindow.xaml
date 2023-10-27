@@ -12,6 +12,19 @@
                  Executed="MyCommandExecuted"/>
     </Window.CommandBindings>
 
+    <Window.Resources>
+        <Style x:Key="FocusedTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="White" />
+            <!-- Color de fondo predeterminado -->
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="LightYellow" />
+                    <!-- Color de fondo cuando tiene el foco -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
 
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="222" Margin="378,59,0,0" VerticalAlignment="Top" Width="412" 
@@ -25,16 +38,16 @@
         </DataGrid>
 
         <GroupBox x:Name="groupBoxNombre" HorizontalAlignment="Left" Height="49" Header="Nombre" Margin="100,63,0,0" VerticalAlignment="Top" Width="167">
-            <TextBox x:Name="textBoxNombre" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
+            <TextBox x:Name="textBoxNombre" Style="{StaticResource FocusedTextBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
         </GroupBox>
         <GroupBox x:Name="groupBoxApellidos" HorizontalAlignment="Left" Height="50" Header="Apellidos" Margin="100,130,0,0" VerticalAlignment="Top" Width="167">
-            <TextBox x:Name="textBoxApellidos" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
+            <TextBox x:Name="textBoxApellidos" Style="{StaticResource FocusedTextBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
         </GroupBox>
         <GroupBox x:Name="groupBoxDireccion" HorizontalAlignment="Left" Height="50" Header="Dirección" Margin="100,203,0,0" VerticalAlignment="Top" Width="167">
-            <TextBox x:Name="textBoxDireccion" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
+            <TextBox x:Name="textBoxDireccion" Style="{StaticResource FocusedTextBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
         </GroupBox>
         <GroupBox x:Name="groupBoxEdad" HorizontalAlignment="Left" Height="50" Header="Edad" Margin="100,267,0,0" VerticalAlignment="Top" Width="167">
-            <TextBox x:Name="textBoxEdad" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
+            <TextBox x:Name="textBoxEdad" Style="{StaticResource FocusedTextBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" Width="157" TextChanged="TextBox_TextChanged"/>
         </GroupBox>
         <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Height="32" Margin="100,340,0,0" VerticalAlignment="Top" Width="167" Click="btnAceptar_Click"/>
         <Label x:Name="textoError" Content="" HorizontalAlignment="Left" Height="88" Margin="378,340,0,0" VerticalAlignment="Top" Width="339"/>
