@@ -34,6 +34,7 @@
                 <DataGridTextColumn Header="Apellidos" Binding="{Binding Apellidos}" />
                 <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" />
                 <DataGridTextColumn Header="Edad" Binding="{Binding Edad}" />
+                <DataGridTextColumn Header="Hijos" Binding="{Binding Hijos}" />
             </DataGrid.Columns>
         </DataGrid>
 
