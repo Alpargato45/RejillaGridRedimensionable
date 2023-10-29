@@ -183,6 +183,9 @@ namespace RejillaGridRedimensionable
             resetear();
         }
 
-        
+        private void CheckBoxHijos_Checked(object sender, RoutedEventArgs e)
+        {
+            SliderHijos.IsEnabled = true;
+        }
     }
 }

@@ -53,7 +53,7 @@
         <Label x:Name="textoError" Content="" HorizontalAlignment="Left" Height="88" Margin="378,340,0,0" VerticalAlignment="Top" Width="339"/>
         <Button x:Name="btnReset" Content="Resetear" HorizontalAlignment="Left" Height="32" Margin="100,385,0,0" VerticalAlignment="Top" Width="167" Click="btnReset_Click"/>
         <Button Content="BORRAR" HorizontalAlignment="Left" Height="25" Margin="378,292,0,0" VerticalAlignment="Top" Width="412" Click="Button_Click"/>
-        <CheckBox Content="Marcar si tiene hijos" HorizontalAlignment="Left" Margin="100,433,0,0" VerticalAlignment="Top"/>
-        <Slider HorizontalAlignment="Left" Margin="100,453,0,0" VerticalAlignment="Top" Width="126"/>
+        <CheckBox x:Name="CheckBoxHijos" Content="Marcar si tiene hijos" HorizontalAlignment="Left" Margin="100,433,0,0" VerticalAlignment="Top" Checked="CheckBoxHijos_Checked"/>
+        <Slider x:Name="SliderHijos" HorizontalAlignment="Left" Margin="100,453,0,0" VerticalAlignment="Top" Width="126" IsSnapToTickEnabled="True" IsEnabled="False"/>
     </Grid>
 </Window>
