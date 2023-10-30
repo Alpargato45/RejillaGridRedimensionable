@@ -30,8 +30,7 @@ namespace RejillaGridRedimensionable
             public string Direccion { get; set; }
             public int Edad { get; set; }
             public int Hijos { get; set; }
-
-
+            public String Altura { get; set; }
         }
 
         public void addPersona()
@@ -42,16 +41,13 @@ namespace RejillaGridRedimensionable
                 Apellidos = textBoxApellidos.Text,
                 Direccion = textBoxDireccion.Text,
                 Edad = int.Parse(textBoxEdad.Text),
-                Hijos = (int)SliderHijos.Value
+                Hijos = (int)SliderHijos.Value,
+                Altura = (string)TxtAltura.Content
             };
 
             listaPersonas.Add(nuevaPersona);
 
-            textBoxNombre.Text = string.Empty;
-            textBoxApellidos.Text = string.Empty;
-            textBoxDireccion.Text = string.Empty;
-            textBoxEdad.Text = string.Empty;
-            SliderHijos.Value = 0;
+            resetear();
         }
 
         public static RoutedCommand MyCommand = new RoutedCommand();
@@ -85,6 +81,7 @@ namespace RejillaGridRedimensionable
                         personaSeleccionada.Edad = edad;
                     }
                     personaSeleccionada.Hijos = (int)SliderHijos.Value;
+                    personaSeleccionada.Altura =(String) TxtAltura.Content;
 
                     dataGrid.SelectedItem = null;
                     dataGrid.Items.Refresh();
@@ -142,6 +139,7 @@ namespace RejillaGridRedimensionable
                     textBoxDireccion.Text = persona.Direccion;
                     textBoxEdad.Text = persona.Edad.ToString();
                     SliderHijos.Value = persona.Hijos;
+                    TxtAltura.Content = persona.Altura;
                     btnAceptar.Content = "Modificar";
 
                     void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -151,6 +149,7 @@ namespace RejillaGridRedimensionable
                         textBoxDireccion.Text = persona.Direccion;
                         textBoxEdad.Text = persona.Edad.ToString();
                         SliderHijos.Value = persona.Hijos;
+                        TxtAltura.Content = persona.Altura;
                     }
                 }
             }
@@ -168,6 +167,7 @@ namespace RejillaGridRedimensionable
             textBoxDireccion.Text = "";
             textBoxEdad.Text = "";
             SliderHijos.Value = 0;
+            TxtAltura.Content = 170;
 
             btnAceptar.Content = "Aceptar";
         }
