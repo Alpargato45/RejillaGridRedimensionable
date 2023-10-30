@@ -195,5 +195,30 @@ namespace RejillaGridRedimensionable
         {
             SliderHijos.IsEnabled = true;
         }
+
+        private void RepeatMas_Click(object sender, RoutedEventArgs e)
+        {
+            string labelText =(String) TxtAltura.Content;
+
+            if (int.TryParse(labelText, out int numero))
+            {
+                numero += 1;
+
+                TxtAltura.Content = numero.ToString();
+            }
+        }
+
+        private void RepeatMenos_Click(object sender, RoutedEventArgs e)
+        {
+            string labelText = (String)TxtAltura.Content;
+
+            if (int.TryParse(labelText, out int numero))
+            {
+
+                numero -= 1;
+
+                TxtAltura.Content = numero.ToString();
+            }
+        }
     }
 }

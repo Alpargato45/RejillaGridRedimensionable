@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RejillaGridRedimensionable"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="900">
+        Title="MainWindow" Height="600" Width="900">
 
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.MyCommand}" 
@@ -56,5 +56,8 @@
         <Button Content="BORRAR" HorizontalAlignment="Left" Height="25" Margin="378,292,0,0" VerticalAlignment="Top" Width="412" Click="Button_Click"/>
         <CheckBox x:Name="CheckBoxHijos" Content="Marcar si tiene hijos" HorizontalAlignment="Left" Margin="100,433,0,0" VerticalAlignment="Top" Checked="CheckBoxHijos_Checked"/>
         <Slider x:Name="SliderHijos" HorizontalAlignment="Left" Margin="100,453,0,0" VerticalAlignment="Top" Width="126" IsSnapToTickEnabled="True" IsEnabled="False"/>
+        <RepeatButton x:Name="RepeatMas" Content="+" HorizontalAlignment="Left" Margin="196,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMas_Click"/>
+        <RepeatButton x:Name="RepeatMenos" Content="-" HorizontalAlignment="Left" Margin="100,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMenos_Click"/>
+        <Label x:Name="TxtAltura" Content="170" HorizontalAlignment="Left" Height="30" Margin="135,523,0,0" VerticalAlignment="Top" Width="49"/>
     </Grid>
 </Window>
