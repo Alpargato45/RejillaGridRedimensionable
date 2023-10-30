@@ -202,9 +202,14 @@ namespace RejillaGridRedimensionable
 
             if (int.TryParse(labelText, out int numero))
             {
-                numero += 1;
-
-                TxtAltura.Content = numero.ToString();
+                if(numero <= 230)
+                {
+                    numero += 1;
+                    TxtAltura.Content = numero.ToString();
+                }else
+                {
+                    textoError.Content = "Altura Máxima Alcanzada";
+                }
             }
         }
 
@@ -214,10 +219,15 @@ namespace RejillaGridRedimensionable
 
             if (int.TryParse(labelText, out int numero))
             {
-
-                numero -= 1;
-
-                TxtAltura.Content = numero.ToString();
+                if (numero >= 65)
+                {
+                    numero -= 1;
+                    TxtAltura.Content = numero.ToString();
+                }
+                else
+                {
+                    textoError.Content = "Altura Mínima Alcanzada";
+                }
             }
         }
     }
