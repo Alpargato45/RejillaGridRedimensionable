@@ -31,6 +31,8 @@ namespace RejillaGridRedimensionable
             public int Edad { get; set; }
             public int Hijos { get; set; }
             public String Altura { get; set; }
+
+            public String Fecha { get; set; }
         }
 
         public void addPersona()
@@ -42,7 +44,8 @@ namespace RejillaGridRedimensionable
                 Direccion = textBoxDireccion.Text,
                 Edad = int.Parse(textBoxEdad.Text),
                 Hijos = (int)SliderHijos.Value,
-                Altura = (string)TxtAltura.Content
+                Altura = (string)TxtAltura.Content,
+                Fecha = escogerFecha.Text.ToString(),
             };
 
             listaPersonas.Add(nuevaPersona);
@@ -82,6 +85,7 @@ namespace RejillaGridRedimensionable
                     }
                     personaSeleccionada.Hijos = (int)SliderHijos.Value;
                     personaSeleccionada.Altura =(String) TxtAltura.Content;
+                    personaSeleccionada.Fecha = escogerFecha.Text;
 
                     dataGrid.SelectedItem = null;
                     dataGrid.Items.Refresh();
@@ -112,7 +116,10 @@ namespace RejillaGridRedimensionable
                 {
                     errorMessage += "ERROR. 'Edad' no es un número válido.\n";
                 }
-
+                if (string.IsNullOrWhiteSpace(escogerFecha.Text))
+                {
+                    errorMessage += "ERROR. No has seleccionado tu fecha de nacimiento.\n";
+                }
                 if (!string.IsNullOrEmpty(errorMessage))
                 {
                     textoError.Content = errorMessage;
@@ -140,6 +147,7 @@ namespace RejillaGridRedimensionable
                     textBoxEdad.Text = persona.Edad.ToString();
                     SliderHijos.Value = persona.Hijos;
                     TxtAltura.Content = persona.Altura;
+                    escogerFecha.Text = persona.Fecha;
                     btnAceptar.Content = "Modificar";
 
                     void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -150,6 +158,7 @@ namespace RejillaGridRedimensionable
                         textBoxEdad.Text = persona.Edad.ToString();
                         SliderHijos.Value = persona.Hijos;
                         TxtAltura.Content = persona.Altura;
+                        escogerFecha.Text = persona.Fecha;
                     }
                 }
             }
@@ -168,6 +177,7 @@ namespace RejillaGridRedimensionable
             textBoxEdad.Text = "";
             SliderHijos.Value = 0;
             TxtAltura.Content = 170;
+            escogerFecha.Text = "";
 
             btnAceptar.Content = "Aceptar";
         }

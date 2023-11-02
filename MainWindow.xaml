@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RejillaGridRedimensionable"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900" MinHeight="600" MinWidth="900">
+        Title="MainWindow" Height="800" Width="1000" MinHeight="800" MinWidth="1000">
 
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.MyCommand}" 
@@ -27,7 +27,7 @@
 
     <Grid>
 
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="222" Margin="378,59,0,0" VerticalAlignment="Top" Width="412" 
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="222" Margin="378,59,0,0" VerticalAlignment="Top" Width="497" 
           AutoGenerateColumns="False" ItemsSource="{Binding TuColeccionDeDatos}" ColumnWidth="*" SelectionChanged="dataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
@@ -36,6 +36,7 @@
                 <DataGridTextColumn Header="Edad" Binding="{Binding Edad}" />
                 <DataGridTextColumn Header="Hijos" Binding="{Binding Hijos}" />
                 <DataGridTextColumn Header="Altura" Binding="{Binding Altura}" />
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -54,11 +55,12 @@
         <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Height="32" Margin="100,340,0,0" VerticalAlignment="Top" Width="167" Click="btnAceptar_Click"/>
         <Label x:Name="textoError" Content="" HorizontalAlignment="Left" Height="88" Margin="378,340,0,0" VerticalAlignment="Top" Width="339"/>
         <Button x:Name="btnReset" Content="Resetear" HorizontalAlignment="Left" Height="32" Margin="100,385,0,0" VerticalAlignment="Top" Width="167" Click="btnReset_Click"/>
-        <Button Content="BORRAR" HorizontalAlignment="Left" Height="25" Margin="378,292,0,0" VerticalAlignment="Top" Width="412" Click="Button_Click"/>
+        <Button Content="BORRAR" HorizontalAlignment="Left" Height="25" Margin="378,292,0,0" VerticalAlignment="Top" Width="497" Click="Button_Click"/>
         <CheckBox x:Name="CheckBoxHijos" Content="Marcar si tiene hijos" HorizontalAlignment="Left" Margin="100,433,0,0" VerticalAlignment="Top" Checked="CheckBoxHijos_Checked"/>
         <Slider x:Name="SliderHijos" HorizontalAlignment="Left" Margin="100,453,0,0" VerticalAlignment="Top" Width="126" IsSnapToTickEnabled="True" IsEnabled="False"/>
         <RepeatButton x:Name="RepeatMas" Content="+" HorizontalAlignment="Left" Margin="196,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMas_Click"/>
         <RepeatButton x:Name="RepeatMenos" Content="-" HorizontalAlignment="Left" Margin="100,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMenos_Click"/>
         <Label x:Name="TxtAltura" Content="170" HorizontalAlignment="Left" Height="30" Margin="135,523,0,0" VerticalAlignment="Top" Width="49" IsEnabled="False"/>
+        <DatePicker x:Name="escogerFecha" HorizontalAlignment="Left" Height="30" Margin="100,558,0,0" VerticalAlignment="Top" Width="214"/>
     </Grid>
 </Window>
