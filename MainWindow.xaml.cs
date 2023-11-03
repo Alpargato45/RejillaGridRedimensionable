@@ -23,7 +23,7 @@ using static RejillaGridRedimensionable.MainWindow;
 
 namespace RejillaGridRedimensionable
 {
-    
+
     public partial class MainWindow : Window
     {
 
@@ -66,7 +66,7 @@ namespace RejillaGridRedimensionable
             dataGrid.ItemsSource = listaPersonas;
             MyCommand.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Alt));
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e){}
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) { }
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if (dataGrid.SelectedItem != null)
@@ -82,7 +82,7 @@ namespace RejillaGridRedimensionable
                         personaSeleccionada.Edad = edad;
                     }
                     personaSeleccionada.Hijos = (int)SliderHijos.Value;
-                    personaSeleccionada.Altura =(String) TxtAltura.Content;
+                    personaSeleccionada.Altura = (String)TxtAltura.Content;
                     personaSeleccionada.Fecha = escogerFecha.Text;
 
                     dataGrid.SelectedItem = null;
@@ -199,14 +199,15 @@ namespace RejillaGridRedimensionable
 
         private void RepeatMas_Click(object sender, RoutedEventArgs e)
         {
-            string labelText =(String) TxtAltura.Content;
+            string labelText = (String)TxtAltura.Content;
             if (int.TryParse(labelText, out int numero))
             {
-                if(numero <= 230)
+                if (numero <= 230)
                 {
                     numero += 1;
                     TxtAltura.Content = numero.ToString();
-                }else
+                }
+                else
                 {
                     textoError.Content = "Altura Máxima Alcanzada";
                 }
@@ -235,19 +236,15 @@ namespace RejillaGridRedimensionable
         {
 
         }
-        private void toggleHijos_Checked_1(object sender, RoutedEventArgs e)
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (toggleHijos.IsChecked == true) { 
-                SliderHijos.IsEnabled = true;
-            }
+            SliderHijos.IsEnabled = true;
         }
-        private void toggleHijos_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_UnChecked(object sender, RoutedEventArgs e)
         {
-            if (toggleHijos.IsChecked == false)
-            {
-                SliderHijos.Value = 0;
-                SliderHijos.IsEnabled = false;
-            }
+            SliderHijos.IsEnabled = false;
+            SliderHijos.Value = 0;
         }
     }
 }
