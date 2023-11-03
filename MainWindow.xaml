@@ -7,12 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1000" MinHeight="800" MinWidth="1000">
 
+    <!--Comando Personalizado-->
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.MyCommand}" 
                  Executed="MyCommandExecuted"/>
     </Window.CommandBindings>
 
     <Window.Resources>
+        <!--Cambio de color de las TextBoxs-->
         <Style x:Key="FocusedTextBoxStyle" TargetType="TextBox">
             <Setter Property="Background" Value="White" />
             <!-- Color de fondo predeterminado -->
@@ -22,6 +24,31 @@
                     <!-- Color de fondo cuando tiene el foco -->
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SwitchToggleButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Green"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
 
@@ -56,7 +83,8 @@
         <Label x:Name="textoError" Content="" HorizontalAlignment="Left" Height="88" Margin="378,340,0,0" VerticalAlignment="Top" Width="339"/>
         <Button x:Name="btnReset" Content="Resetear" HorizontalAlignment="Left" Height="32" Margin="100,385,0,0" VerticalAlignment="Top" Width="167" Click="btnReset_Click"/>
         <Button Content="BORRAR" HorizontalAlignment="Left" Height="25" Margin="378,292,0,0" VerticalAlignment="Top" Width="497" Click="Button_Click"/>
-        <ToggleButton x:Name="toggleHijos" Content="Pulsa si tienes Hijos" HorizontalAlignment="Left" Height="32" Margin="100,430,0,0" VerticalAlignment="Top" Width="167" Checked="toggleHijos_Checked"/>
+        <ToggleButton x:Name="toggleHijos" Content="Pulsar si tienes Hijos" Width="167" Height="33" HorizontalAlignment="Left" Margin="100,432,0,0" VerticalAlignment="Top" Checked="toggleHijos_Checked_1" Unchecked="toggleHijos_Unchecked" Style="{StaticResource SwitchToggleButtonStyle}"/>
+
         <Slider x:Name="SliderHijos" HorizontalAlignment="Left" Margin="100,478,0,0" VerticalAlignment="Top" Width="126" IsSnapToTickEnabled="True" IsEnabled="False" AutoToolTipPlacement="TopLeft"/>
         <RepeatButton x:Name="RepeatMas" Content="+" HorizontalAlignment="Left" Margin="196,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMas_Click"/>
         <RepeatButton x:Name="RepeatMenos" Content="-" HorizontalAlignment="Left" Margin="100,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMenos_Click"/>

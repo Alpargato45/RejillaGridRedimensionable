@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -18,11 +19,14 @@ using System.Windows.Shapes;
 using static RejillaGridRedimensionable.MainWindow;
 
 
+
+
 namespace RejillaGridRedimensionable
 {
     
     public partial class MainWindow : Window
     {
+
         public class Persona
         {
             public string Nombre { get; set; }
@@ -231,14 +235,17 @@ namespace RejillaGridRedimensionable
         {
 
         }
-
-        private void toggleHijos_Checked(object sender, RoutedEventArgs e)
+        private void toggleHijos_Checked_1(object sender, RoutedEventArgs e)
         {
-            if(toggleHijos.IsChecked == true)
-            {
+            if (toggleHijos.IsChecked == true) { 
                 SliderHijos.IsEnabled = true;
-            }else if (toggleHijos.IsChecked == false) 
-            { 
+            }
+        }
+        private void toggleHijos_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (toggleHijos.IsChecked == false)
+            {
+                SliderHijos.Value = 0;
                 SliderHijos.IsEnabled = false;
             }
         }
