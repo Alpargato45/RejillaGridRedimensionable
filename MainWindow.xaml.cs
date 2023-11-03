@@ -62,12 +62,7 @@ namespace RejillaGridRedimensionable
             dataGrid.ItemsSource = listaPersonas;
             MyCommand.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Alt));
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        
-        }
-
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e){}
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if (dataGrid.SelectedItem != null)
@@ -75,7 +70,6 @@ namespace RejillaGridRedimensionable
                 var personaSeleccionada = dataGrid.SelectedItem as Persona;
                 if (personaSeleccionada != null)
                 {
-                    
                     personaSeleccionada.Nombre = textBoxNombre.Text;
                     personaSeleccionada.Apellidos = textBoxApellidos.Text;
                     personaSeleccionada.Direccion = textBoxDireccion.Text;
@@ -130,7 +124,6 @@ namespace RejillaGridRedimensionable
                     addPersona();
                 }
             }
-
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -178,7 +171,6 @@ namespace RejillaGridRedimensionable
             SliderHijos.Value = 0;
             TxtAltura.Content = 170;
             escogerFecha.Text = "";
-
             btnAceptar.Content = "Aceptar";
         }
 
@@ -201,15 +193,9 @@ namespace RejillaGridRedimensionable
             resetear();
         }
 
-        private void CheckBoxHijos_Checked(object sender, RoutedEventArgs e)
-        {
-            SliderHijos.IsEnabled = true;
-        }
-
         private void RepeatMas_Click(object sender, RoutedEventArgs e)
         {
             string labelText =(String) TxtAltura.Content;
-
             if (int.TryParse(labelText, out int numero))
             {
                 if(numero <= 230)
@@ -238,6 +224,22 @@ namespace RejillaGridRedimensionable
                 {
                     textoError.Content = "Altura Mínima Alcanzada";
                 }
+            }
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void toggleHijos_Checked(object sender, RoutedEventArgs e)
+        {
+            if(toggleHijos.IsChecked == true)
+            {
+                SliderHijos.IsEnabled = true;
+            }else if (toggleHijos.IsChecked == false) 
+            { 
+                SliderHijos.IsEnabled = false;
             }
         }
     }

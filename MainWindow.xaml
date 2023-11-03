@@ -56,11 +56,12 @@
         <Label x:Name="textoError" Content="" HorizontalAlignment="Left" Height="88" Margin="378,340,0,0" VerticalAlignment="Top" Width="339"/>
         <Button x:Name="btnReset" Content="Resetear" HorizontalAlignment="Left" Height="32" Margin="100,385,0,0" VerticalAlignment="Top" Width="167" Click="btnReset_Click"/>
         <Button Content="BORRAR" HorizontalAlignment="Left" Height="25" Margin="378,292,0,0" VerticalAlignment="Top" Width="497" Click="Button_Click"/>
-        <CheckBox x:Name="CheckBoxHijos" Content="Marcar si tiene hijos" HorizontalAlignment="Left" Margin="100,433,0,0" VerticalAlignment="Top" Checked="CheckBoxHijos_Checked"/>
-        <Slider x:Name="SliderHijos" HorizontalAlignment="Left" Margin="100,453,0,0" VerticalAlignment="Top" Width="126" IsSnapToTickEnabled="True" IsEnabled="False"/>
+        <ToggleButton x:Name="toggleHijos" Content="Pulsa si tienes Hijos" HorizontalAlignment="Left" Height="32" Margin="100,430,0,0" VerticalAlignment="Top" Width="167" Checked="toggleHijos_Checked"/>
+        <Slider x:Name="SliderHijos" HorizontalAlignment="Left" Margin="100,478,0,0" VerticalAlignment="Top" Width="126" IsSnapToTickEnabled="True" IsEnabled="False" AutoToolTipPlacement="TopLeft"/>
         <RepeatButton x:Name="RepeatMas" Content="+" HorizontalAlignment="Left" Margin="196,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMas_Click"/>
         <RepeatButton x:Name="RepeatMenos" Content="-" HorizontalAlignment="Left" Margin="100,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMenos_Click"/>
         <Label x:Name="TxtAltura" Content="170" HorizontalAlignment="Left" Height="30" Margin="135,523,0,0" VerticalAlignment="Top" Width="49" IsEnabled="False"/>
         <DatePicker x:Name="escogerFecha" HorizontalAlignment="Left" Height="30" Margin="100,558,0,0" VerticalAlignment="Top" Width="214"/>
+        <ListBox HorizontalAlignment="Left" Height="85" Margin="378,453,0,0" VerticalAlignment="Top" Width="339" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged"/>
     </Grid>
 </Window>
