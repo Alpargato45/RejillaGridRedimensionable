@@ -47,14 +47,15 @@ namespace RejillaGridRedimensionable
                 Apellidos = textBoxApellidos.Text,
                 Direccion = textBoxDireccion.Text,
                 Edad = int.Parse(textBoxEdad.Text),
-                Hijos = (int)SliderHijos.Value,
-                Altura = (string)TxtAltura.Content,
-                Fecha = escogerFecha.Text.ToString(),
-                listaHijos = ListBoxHijos.Items.OfType<string>().ToList(),
+                Hijos = Convert.ToInt32(SliderHijos.Value),
+                Altura = TxtAltura.Content.ToString(),
+                Fecha = escogerFecha.Text.ToString()
             };
 
-            listaPersonas.Add(nuevaPersona);
+            // Copia los elementos de ListBoxHijos a la lista de hijos de la persona
+            nuevaPersona.listaHijos = ListBoxHijos.Items.OfType<string>().ToList();
 
+            listaPersonas.Add(nuevaPersona);
             resetear();
         }
 
