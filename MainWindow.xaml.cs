@@ -37,6 +37,8 @@ namespace RejillaGridRedimensionable
             public String Altura { get; set; }
 
             public String Fecha { get; set; }
+
+            public List<String> listaHijos { get; set; } = new List<String>();
         }
 
         public void addPersona()
@@ -50,6 +52,7 @@ namespace RejillaGridRedimensionable
                 Hijos = (int)SliderHijos.Value,
                 Altura = (string)TxtAltura.Content,
                 Fecha = escogerFecha.Text.ToString(),
+                listaHijos = ListBoxHijos.ContextMenu.Items.Cast<string>().ToList(),
             };
 
             listaPersonas.Add(nuevaPersona);
@@ -145,6 +148,7 @@ namespace RejillaGridRedimensionable
                     SliderHijos.Value = persona.Hijos;
                     TxtAltura.Content = persona.Altura;
                     escogerFecha.Text = persona.Fecha;
+                    ListBoxHijos.ItemsSource = persona.listaHijos;
                     btnAceptar.Content = "Modificar";
 
                     void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -240,11 +244,20 @@ namespace RejillaGridRedimensionable
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             SliderHijos.IsEnabled = true;
+            GroupBoxHijos.Visibility = Visibility.Visible;
         }
         private void CheckBox_UnChecked(object sender, RoutedEventArgs e)
         {
             SliderHijos.IsEnabled = false;
             SliderHijos.Value = 0;
+            GroupBoxHijos.Visibility= Visibility.Hidden;
         }
+        private void btnHijos_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ListBoxHijos_SelectionChanged(object sender, SelectionChangedEventArgs e){}
+        private void TextBoxHijos_TextChanged(object sender, TextChangedEventArgs e){}
     }
 }
