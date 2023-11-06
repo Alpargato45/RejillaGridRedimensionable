@@ -41,12 +41,6 @@ namespace RejillaGridRedimensionable
 
         public void addPersona()
         {
-
-            if (SliderHijos.Value > 0 && ListBoxHijos.Items.OfType<string>().Count() != SliderHijos.Value)
-            {
-                MessageBox.Show("Por favor, ingresa los nombres de todos los hijos antes de agregar una persona.");
-                return;
-            }
             Persona nuevaPersona = new Persona
             {
                 Nombre = textBoxNombre.Text,
@@ -73,12 +67,7 @@ namespace RejillaGridRedimensionable
             dataGrid.ItemsSource = listaPersonas;
             MyCommand.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Alt));
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
-            int hijosValue = (int)SliderHijos.Value;
-            bool allNamesEntered = ListBoxHijos.Items.OfType<string>().Count() == hijosValue;
-
-            btnAceptar.IsEnabled = allNamesEntered;
-        }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {}
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             List<string> lista = new List<string>();
