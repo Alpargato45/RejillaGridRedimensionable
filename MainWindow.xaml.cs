@@ -1,22 +1,11 @@
-﻿using RejillaGridRedimensionable;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Common;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static RejillaGridRedimensionable.MainWindow;
+
 
 
 namespace RejillaGridRedimensionable
@@ -33,9 +22,7 @@ namespace RejillaGridRedimensionable
             public int Edad { get; set; }
             public int Hijos { get; set; }
             public String Altura { get; set; }
-
             public String Fecha { get; set; }
-
             public List<String> listaHijos { get; set; } = new List<String>();
         }
 
@@ -51,8 +38,6 @@ namespace RejillaGridRedimensionable
                 Altura = TxtAltura.Content.ToString(),
                 Fecha = escogerFecha.Text.ToString()
             };
-
-            // Copia los elementos de ListBoxHijos a la lista de hijos de la persona
             nuevaPersona.listaHijos = ListBoxHijos.Items.OfType<string>().ToList();
 
             listaPersonas.Add(nuevaPersona);
@@ -93,7 +78,6 @@ namespace RejillaGridRedimensionable
                     personaSeleccionada.Hijos = (int)SliderHijos.Value;
                     personaSeleccionada.Altura = (String)TxtAltura.Content;
                     personaSeleccionada.Fecha = escogerFecha.Text;
-
                     personaSeleccionada.listaHijos = ListBoxHijos.Items.OfType<string>().ToList();
 
                     dataGrid.SelectedItem = null;
@@ -103,7 +87,6 @@ namespace RejillaGridRedimensionable
             }
             else
             {
-
                 string errorMessage = "";
 
                 void AddError(string fieldName, string errorMessageFormat, params object[] args)
@@ -113,7 +96,6 @@ namespace RejillaGridRedimensionable
                         errorMessage += string.Format("ERROR. " + errorMessageFormat + "\n", args);
                     }
                 }
-
                 AddError(textBoxNombre.Text, "El campo 'Nombre' está vacío.");
                 AddError(textBoxApellidos.Text, "El campo 'Apellidos' está vacío.");
                 AddError(textBoxDireccion.Text, "El campo 'Dirección' está vacío.");
@@ -123,7 +105,6 @@ namespace RejillaGridRedimensionable
                 {
                     AddError("", "'Edad' no es un número válido.");
                 }
-
                 AddError(escogerFecha.Text, "No has seleccionado tu fecha de nacimiento.");
 
                 int hijosValue = (int)SliderHijos.Value;
