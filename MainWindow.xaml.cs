@@ -19,15 +19,13 @@ using System.Windows.Shapes;
 using static RejillaGridRedimensionable.MainWindow;
 
 
-
-
 namespace RejillaGridRedimensionable
 {
 
     public partial class MainWindow : Window
     {
 
-        public class Persona
+        private class Persona
         {
             public string Nombre { get; set; }
             public string Apellidos { get; set; }
@@ -43,6 +41,12 @@ namespace RejillaGridRedimensionable
 
         public void addPersona()
         {
+
+            if (SliderHijos.Value > 0 && ListBoxHijos.Items.OfType<string>().Count() != SliderHijos.Value)
+            {
+                MessageBox.Show("Por favor, ingresa los nombres de todos los hijos antes de agregar una persona.");
+                return;
+            }
             Persona nuevaPersona = new Persona
             {
                 Nombre = textBoxNombre.Text,
@@ -52,7 +56,7 @@ namespace RejillaGridRedimensionable
                 Hijos = (int)SliderHijos.Value,
                 Altura = (string)TxtAltura.Content,
                 Fecha = escogerFecha.Text.ToString(),
-                listaHijos = ListBoxHijos.ContextMenu.Items.Cast<string>().ToList(),
+                listaHijos = ListBoxHijos.Items.OfType<string>().ToList(),
             };
 
             listaPersonas.Add(nuevaPersona);
@@ -69,9 +73,21 @@ namespace RejillaGridRedimensionable
             dataGrid.ItemsSource = listaPersonas;
             MyCommand.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Alt));
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) { }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
+            int hijosValue = (int)SliderHijos.Value;
+            bool allNamesEntered = ListBoxHijos.Items.OfType<string>().Count() == hijosValue;
+
+            btnAceptar.IsEnabled = allNamesEntered;
+        }
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
+            List<string> lista = new List<string>();
+
+            if (SliderHijos.Value > 0 && ListBoxHijos.Items.OfType<string>().Count() != SliderHijos.Value)
+            {
+                MessageBox.Show("Por favor, ingresa los nombres de todos los hijos antes de agregar/modificar una persona.");
+                return;
+            }
             if (dataGrid.SelectedItem != null)
             {
                 var personaSeleccionada = dataGrid.SelectedItem as Persona;
@@ -88,6 +104,8 @@ namespace RejillaGridRedimensionable
                     personaSeleccionada.Altura = (String)TxtAltura.Content;
                     personaSeleccionada.Fecha = escogerFecha.Text;
 
+                    personaSeleccionada.listaHijos = ListBoxHijos.Items.OfType<string>().ToList();
+
                     dataGrid.SelectedItem = null;
                     dataGrid.Items.Refresh();
                     resetear();
@@ -98,36 +116,34 @@ namespace RejillaGridRedimensionable
 
                 string errorMessage = "";
 
-                if (string.IsNullOrWhiteSpace(textBoxNombre.Text))
+                void AddError(string fieldName, string errorMessageFormat, params object[] args)
                 {
-                    errorMessage += "ERROR. El campo 'Nombre' está vacío.\n";
+                    if (string.IsNullOrWhiteSpace(fieldName))
+                    {
+                        errorMessage += string.Format("ERROR. " + errorMessageFormat + "\n", args);
+                    }
                 }
 
-                if (string.IsNullOrWhiteSpace(textBoxApellidos.Text))
+                AddError(textBoxNombre.Text, "El campo 'Nombre' está vacío.");
+                AddError(textBoxApellidos.Text, "El campo 'Apellidos' está vacío.");
+                AddError(textBoxDireccion.Text, "El campo 'Dirección' está vacío.");
+
+                int edad;
+                if (!int.TryParse(textBoxEdad.Text, out edad))
                 {
-                    errorMessage += "ERROR. El campo 'Apellidos' está vacío.\n";
+                    AddError("", "'Edad' no es un número válido.");
                 }
 
-                if (string.IsNullOrWhiteSpace(textBoxDireccion.Text))
-                {
-                    errorMessage += "ERROR. El campo 'Dirección' está vacío.\n";
-                }
+                AddError(escogerFecha.Text, "No has seleccionado tu fecha de nacimiento.");
 
-                if (!int.TryParse(textBoxEdad.Text, out int edad))
+                int hijosValue = (int)SliderHijos.Value;
+                if (ListBoxHijos.Items.Count != hijosValue)
                 {
-                    errorMessage += "ERROR. 'Edad' no es un número válido.\n";
+                    AddError(hijosValue.ToString(), "El número de elementos en la lista de hijos no coincide con el valor del Slider ({0}).", hijosValue);
                 }
-                if (string.IsNullOrWhiteSpace(escogerFecha.Text))
+                textoError.Content = string.IsNullOrEmpty(errorMessage) ? "" : errorMessage;
+                if (string.IsNullOrEmpty(errorMessage))
                 {
-                    errorMessage += "ERROR. No has seleccionado tu fecha de nacimiento.\n";
-                }
-                if (!string.IsNullOrEmpty(errorMessage))
-                {
-                    textoError.Content = errorMessage;
-                }
-                else
-                {
-                    textoError.Content = "";
                     addPersona();
                 }
             }
@@ -160,6 +176,7 @@ namespace RejillaGridRedimensionable
                         SliderHijos.Value = persona.Hijos;
                         TxtAltura.Content = persona.Altura;
                         escogerFecha.Text = persona.Fecha;
+                        ListBoxHijos.ItemsSource = persona.listaHijos;
                     }
                 }
             }
@@ -179,6 +196,9 @@ namespace RejillaGridRedimensionable
             SliderHijos.Value = 0;
             TxtAltura.Content = 170;
             escogerFecha.Text = "";
+            TextBoxHijos.Text = "";
+            ListBoxHijos.ItemsSource = null;
+            ListBoxHijos.Items.Clear();
             btnAceptar.Content = "Aceptar";
         }
 
@@ -206,7 +226,7 @@ namespace RejillaGridRedimensionable
             string labelText = (String)TxtAltura.Content;
             if (int.TryParse(labelText, out int numero))
             {
-                if (numero <= 230)
+                if (numero < 230)
                 {
                     numero += 1;
                     TxtAltura.Content = numero.ToString();
@@ -221,10 +241,9 @@ namespace RejillaGridRedimensionable
         private void RepeatMenos_Click(object sender, RoutedEventArgs e)
         {
             string labelText = (String)TxtAltura.Content;
-
             if (int.TryParse(labelText, out int numero))
             {
-                if (numero >= 65)
+                if (numero > 65)
                 {
                     numero -= 1;
                     TxtAltura.Content = numero.ToString();
@@ -254,7 +273,19 @@ namespace RejillaGridRedimensionable
         }
         private void btnHijos_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (ListBoxHijos.Items.Count >= SliderHijos.Value)
+            {
+                MessageBox.Show("No se puede añadir más hijos. Número máximo alcanzado.");
+            }
+            else if (TextBoxHijos.Text == "")
+            {
+                MessageBox.Show("No se puede añadir. El campo está vacio.");
+            }
+            else
+            {
+                ListBoxHijos.Items.Add(TextBoxHijos.Text);
+
+            }
         }
 
         private void ListBoxHijos_SelectionChanged(object sender, SelectionChangedEventArgs e){}
