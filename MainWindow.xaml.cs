@@ -245,11 +245,6 @@ namespace RejillaGridRedimensionable
             }
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             SliderHijos.IsEnabled = true;
@@ -274,7 +269,7 @@ namespace RejillaGridRedimensionable
             else
             {
                 ListBoxHijos.Items.Add(TextBoxHijos.Text);
-
+                TextBoxHijos.Text = string.Empty;
             }
         }
 
