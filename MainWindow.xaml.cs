@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace RejillaGridRedimensionable
 {
@@ -286,6 +287,17 @@ namespace RejillaGridRedimensionable
                 ListBoxHijos.Items.Refresh();
             }
         }
+        private void CambiarFondoNegro_Click(object sender, RoutedEventArgs e)
+        {
+            FondoApp.Background = new SolidColorBrush(Colors.Black);
+        }
+        private void CambiarFondoBeige_Click(object sender, RoutedEventArgs e)
+        {
+            FondoApp.Background = new SolidColorBrush(Colors.Beige);
+        }
+        private void CambiarFondoBlanco_Click(object sender, RoutedEventArgs e)
+        {
+            FondoApp.Background = new SolidColorBrush(Colors.White);
+        }
     }
 }
-
