@@ -162,7 +162,10 @@ namespace RejillaGridRedimensionable
                     SliderHijos.Value = persona.Hijos;
                     TxtAltura.Content = persona.Altura;
                     escogerFecha.Text = persona.Fecha;
-                    ListBoxHijos.ItemsSource = persona.listaHijos;
+                    foreach (var hijo in persona.listaHijos)
+                    {
+                        ListBoxHijos.Items.Add(hijo.Nombre);
+                    }
                     btnAceptar.Content = "Modificar";
                 }
             }
@@ -272,9 +275,17 @@ namespace RejillaGridRedimensionable
                 TextBoxHijos.Text = string.Empty;
             }
         }
-
-        private void ListBoxHijos_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
+        private void ListBoxHijos_SelectionChanged(object sender, SelectionChangedEventArgs e) {}
         private void TextBoxHijos_TextChanged(object sender, TextChangedEventArgs e) { }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxHijos.SelectedItem != null)
+            {
+                ListBoxHijos.Items.Remove(ListBoxHijos.SelectedItem);
+                ListBoxHijos.Items.Refresh();
+            }
+        }
     }
 }
 
