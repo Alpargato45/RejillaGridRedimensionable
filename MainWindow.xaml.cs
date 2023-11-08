@@ -6,14 +6,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-
-
 namespace RejillaGridRedimensionable
 {
-
     public partial class MainWindow : Window
     {
-
         private class Persona
         {
             public string Nombre { get; set; }
@@ -23,7 +19,7 @@ namespace RejillaGridRedimensionable
             public int Hijos { get; set; }
             public String Altura { get; set; }
             public String Fecha { get; set; }
-            public List<String> listaHijos { get; set; } = new List<String>();
+            public List<Persona> listaHijos { get; set; } = new List<Persona>();
         }
 
         public void addPersona()
@@ -38,10 +34,36 @@ namespace RejillaGridRedimensionable
                 Altura = TxtAltura.Content.ToString(),
                 Fecha = escogerFecha.Text.ToString()
             };
-            nuevaPersona.listaHijos = ListBoxHijos.Items.OfType<string>().ToList();
+            foreach (string nombreHijo in ListBoxHijos.Items.OfType<string>())
+            {
+                nuevaPersona.listaHijos.Add(new Persona { Nombre = nombreHijo });
+            }
 
             listaPersonas.Add(nuevaPersona);
+            MostrarTreeView();
             resetear();
+        }
+
+        private void MostrarTreeView()
+        {
+            // Limpiar el TreeView antes de agregar nuevos elementos
+            treeView.Items.Clear();
+
+            foreach (var persona in listaPersonas)
+            {
+                TreeViewItem personaNode = new TreeViewItem();
+                personaNode.Header = persona.Nombre;
+
+                foreach (var hijo in persona.listaHijos)
+                {
+                    TreeViewItem hijoNode = new TreeViewItem();
+                    hijoNode.Header = hijo.Nombre;
+
+                    personaNode.Items.Add(hijoNode);
+                }
+
+                treeView.Items.Add(personaNode);
+            }
         }
 
         public static RoutedCommand MyCommand = new RoutedCommand();
@@ -53,7 +75,7 @@ namespace RejillaGridRedimensionable
             dataGrid.ItemsSource = listaPersonas;
             MyCommand.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Alt));
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {}
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) { }
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             List<string> lista = new List<string>();
@@ -78,7 +100,12 @@ namespace RejillaGridRedimensionable
                     personaSeleccionada.Hijos = (int)SliderHijos.Value;
                     personaSeleccionada.Altura = (String)TxtAltura.Content;
                     personaSeleccionada.Fecha = escogerFecha.Text;
-                    personaSeleccionada.listaHijos = ListBoxHijos.Items.OfType<string>().ToList();
+                    personaSeleccionada.listaHijos.Clear();
+                    foreach (string nombreHijo in ListBoxHijos.Items.OfType<string>())
+                    {
+                        personaSeleccionada.listaHijos.Add(new Persona { Nombre = nombreHijo });
+                    }
+                    MostrarTreeView();
 
                     dataGrid.SelectedItem = null;
                     dataGrid.Items.Refresh();
@@ -137,18 +164,6 @@ namespace RejillaGridRedimensionable
                     escogerFecha.Text = persona.Fecha;
                     ListBoxHijos.ItemsSource = persona.listaHijos;
                     btnAceptar.Content = "Modificar";
-
-                    void btnAceptar_Click(object sender, RoutedEventArgs e)
-                    {
-                        textBoxNombre.Text = persona.Nombre;
-                        textBoxApellidos.Text = persona.Apellidos;
-                        textBoxDireccion.Text = persona.Direccion;
-                        textBoxEdad.Text = persona.Edad.ToString();
-                        SliderHijos.Value = persona.Hijos;
-                        TxtAltura.Content = persona.Altura;
-                        escogerFecha.Text = persona.Fecha;
-                        ListBoxHijos.ItemsSource = persona.listaHijos;
-                    }
                 }
             }
         }
@@ -184,9 +199,11 @@ namespace RejillaGridRedimensionable
                 {
                     listaPersonas.Remove(personaSeleccionada);
                     resetear();
+                    MostrarTreeView();
                 }
             }
         }
+
         private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             resetear();
@@ -231,12 +248,14 @@ namespace RejillaGridRedimensionable
             SliderHijos.IsEnabled = true;
             GroupBoxHijos.Visibility = Visibility.Visible;
         }
+
         private void CheckBox_UnChecked(object sender, RoutedEventArgs e)
         {
             SliderHijos.IsEnabled = false;
             SliderHijos.Value = 0;
-            GroupBoxHijos.Visibility= Visibility.Hidden;
+            GroupBoxHijos.Visibility = Visibility.Hidden;
         }
+
         private void btnHijos_Click(object sender, RoutedEventArgs e)
         {
             if (ListBoxHijos.Items.Count >= SliderHijos.Value)
@@ -245,7 +264,7 @@ namespace RejillaGridRedimensionable
             }
             else if (TextBoxHijos.Text == "")
             {
-                MessageBox.Show("No se puede añadir. El campo está vacio.");
+                MessageBox.Show("No se puede añadir. El campo está vacío.");
             }
             else
             {
@@ -254,7 +273,8 @@ namespace RejillaGridRedimensionable
             }
         }
 
-        private void ListBoxHijos_SelectionChanged(object sender, SelectionChangedEventArgs e){}
-        private void TextBoxHijos_TextChanged(object sender, TextChangedEventArgs e){}
+        private void ListBoxHijos_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
+        private void TextBoxHijos_TextChanged(object sender, TextChangedEventArgs e) { }
     }
 }
+

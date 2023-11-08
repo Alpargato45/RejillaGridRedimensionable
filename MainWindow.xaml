@@ -170,5 +170,14 @@
                 <Button x:Name="btnHijos" Content="Añadir" Click="btnHijos_Click"/>
             </StackPanel>
         </GroupBox>
+        <TreeView x:Name="treeView" HorizontalAlignment="Left" Height="116" Margin="72,658,0,0" VerticalAlignment="Top" Width="242">
+            <TreeView.ItemTemplate>
+            <HierarchicalDataTemplate ItemsSource="{Binding Hijos}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Nombre}" Margin="5"/>
+                </StackPanel>
+            </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
     </Grid>
 </Window>
