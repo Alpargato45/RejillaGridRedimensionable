@@ -128,7 +128,7 @@
 
     <Grid x:Name="FondoApp">
 
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="222" Margin="378,59,0,0" VerticalAlignment="Top" Width="497" 
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="222" Margin="378,59,0,0" VerticalAlignment="Top" Width="497"
           AutoGenerateColumns="False" ItemsSource="{Binding TuColeccionDeDatos}" ColumnWidth="*" SelectionChanged="dataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
