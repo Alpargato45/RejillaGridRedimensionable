@@ -23,7 +23,7 @@ namespace RejillaGridRedimensionable
             public List<Persona> listaHijos { get; set; } = new List<Persona>();
         }
 
-        public void addPersona()
+        private void addPersona()
         {
             Persona nuevaPersona = new Persona
             {
@@ -176,7 +176,7 @@ namespace RejillaGridRedimensionable
             resetear();
         }
 
-        public void resetear()
+        private void resetear()
         {
             textBoxNombre.Text = "";
             textBoxApellidos.Text = "";
