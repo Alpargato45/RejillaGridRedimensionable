@@ -163,7 +163,7 @@
         <RepeatButton x:Name="RepeatMenos" Content="-" HorizontalAlignment="Left" Margin="100,523,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="RepeatMenos_Click"/>
         <Label x:Name="TxtAltura" Content="170" HorizontalAlignment="Left" Height="30" Margin="135,523,0,0" VerticalAlignment="Top" Width="49" IsEnabled="False"/>
         <DatePicker x:Name="escogerFecha" HorizontalAlignment="Left" Height="30" Margin="100,558,0,0" VerticalAlignment="Top" Width="214"/>
-        <GroupBox x:Name="GroupBoxHijos" HorizontalAlignment="Left" Height="229" Header="Hijos" Margin="378,468,0,0" VerticalAlignment="Top" Width="339" >
+        <GroupBox x:Name="GroupBoxHijos" HorizontalAlignment="Left" Height="229" Header="Hijos" Margin="378,468,0,0" VerticalAlignment="Top" Width="339" Visibility="Hidden">
             <StackPanel Height="207">
                 <ListBox x:Name="ListBoxHijos" Height="129" SelectionChanged="ListBoxHijos_SelectionChanged"/>
                 <TextBox x:Name="TextBoxHijos" TextWrapping="Wrap" Width="324" Height="33" TextChanged="TextBoxHijos_TextChanged"/>

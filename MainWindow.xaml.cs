@@ -47,7 +47,6 @@ namespace RejillaGridRedimensionable
 
         private void MostrarTreeView()
         {
-            // Limpiar el TreeView antes de agregar nuevos elementos
             treeView.Items.Clear();
 
             foreach (var persona in listaPersonas)
@@ -259,7 +258,6 @@ namespace RejillaGridRedimensionable
             SliderHijos.Value = 0;
             GroupBoxHijos.Visibility = Visibility.Hidden;
         }
-
         private void btnHijos_Click(object sender, RoutedEventArgs e)
         {
             if (ListBoxHijos.Items.Count >= SliderHijos.Value)
